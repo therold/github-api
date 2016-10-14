@@ -1,4 +1,4 @@
-.loading, .loadingUserDetails {
+.loading, .loadingUserDetails, .loadingRepoDetails {
   display: none;
 }
 .avatarImg {
@@ -6,6 +6,6 @@
   width: auto;
 }
 
-.userInfo p {
+.userInfo p, .repos p {
   cursor: pointer;
 }

@@ -23,6 +23,13 @@ Github.prototype.user = function(username, n, displayFunction, displayError) {
     });
 };
 
-test = function() {};
+Github.prototype.repos = function(username, displayFunction, displayError) {
+  $.get(`${baseURL}/users/${username}/repos?access_token=${apiKey}`)
+    .then(function(response) {
+      displayFunction(response);
+    }).fail(function(error) {
+      displayError(error.responseJSON.message, n);
+    });
+};
 
 exports.githubModule = Github;

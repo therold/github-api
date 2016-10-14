@@ -15,6 +15,7 @@ $(document).ready(function() {
     var user = queryString.parse(location.search).user;
     if(user) {
       $('.loading').show();
+      $('.mainContent').hide();
       $('title').text(user);
       github.user(user, 0, displayUserResults, displayUserError);
     }
