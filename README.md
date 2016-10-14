@@ -16,6 +16,10 @@ _This application is designed to search users on Github. This application will a
 * Install dependencies via npm and bower:
   * npm install
   * bower install
+* Create a file called ".env" in the main project directory:
+  * touch github-api/.env
+* Open the .env file in your preferred text editor and add your Github API key. There should be a single line in the .env file using the following format:
+  * exports.apiKey = "YOUR-API-KEY-HERE";
 * Build and run the project:
   * gulp serve
 * Open the site in your favorite web browser:
