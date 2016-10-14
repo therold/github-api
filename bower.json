@@ -1,0 +1,21 @@
+{
+  "name": "github-api",
+  "description": "An application to search Github users",
+  "main": "index.js",
+  "authors": [
+    "Timothy Herold"
+  ],
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/therold/github-api",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "bootstrap": "^3.3.7"
+  }
+}
