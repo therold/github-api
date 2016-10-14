@@ -14,4 +14,15 @@ Github.prototype.search = function(search, displayFunction, displayError) {
     });
 };
 
+Github.prototype.user = function(username, n, displayFunction, displayError) {
+  $.get(`${baseURL}/users/${username}?access_token=${apiKey}`)
+    .then(function(response) {
+      displayFunction(response, n);
+    }).fail(function(error) {
+      displayError(error.responseJSON.message, n);
+    });
+};
+
+test = function() {};
+
 exports.githubModule = Github;

@@ -1,7 +1,11 @@
-.loading {
+.loading, .loadingUserDetails {
   display: none;
 }
 .avatarImg {
   height: 40px;
   width: auto;
+}
+
+.userInfo p {
+  cursor: pointer;
 }
