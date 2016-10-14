@@ -5,10 +5,11 @@ function Github() {
 
 }
 
-Github.prototype.search = function(search, displayFunction, displayError) {
-  $.get(`${baseURL}/search/users?q=${search}&access_token=${apiKey}`)
+Github.prototype.search = function(search, page, displayFunction, paginationFunction, displayError) {
+  $.get(`${baseURL}/search/users?q=${search}&page=${page}&access_token=${apiKey}`)
     .then(function(response) {
       displayFunction(response);
+      paginationFunction(search, response.total_count, page);
     }).fail(function(error) {
       displayError(error.responseJSON.message);
     });

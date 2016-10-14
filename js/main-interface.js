@@ -9,7 +9,11 @@ $(document).ready(function() {
       $('.loading, .banner-sm').show();
       $('.banner').hide();
       $('#name').val(search);
-      github.search(search, displaySearchResults, displaySearchError);
+      var page = parseInt(queryString.parse(location.search).page);
+      if(!page) {
+        page = 1;
+      }
+      github.search(search, page, displaySearchResults, pageinateSearchResults, displaySearchError);
     } else {
       $('.banner').show();
     }

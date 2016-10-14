@@ -1,6 +1,7 @@
 displaySearchResults = function(result) {
-  // console.log(result);
+  console.log(result);
   $('.loading').hide();
+
   if(result.items.length === 0) {
     var resultInfo = "<h3>No results found.</h3>";
     $('.results').append(resultInfo);
@@ -23,6 +24,36 @@ displaySearchResults = function(result) {
     });
   }
 };
+
+pageinateSearchResults = function(search, resultsCount, currentPage) {
+  var firstPage = 1;
+  var lastPage = resultsCount > 1000 ? 34 : Math.ceil(resultsCount / 30); // Github API only supports showing the first 1000 results, 30 results per page.
+
+  var minVisiblePage = currentPage - 10 > 0 ? currentPage - 10 : 1;
+  var maxVisiblePage = lastPage - currentPage < 10 ? lastPage : 20 + minVisiblePage;
+
+  if (lastPage > firstPage) {
+    var pagination = "<p>";
+    if (minVisiblePage > 1) {
+      pagination += `<a class='paginateLink' href='index.html?name=${search}&page=${firstPage}'><span class='glyphicon glyphicon glyphicon-menu-left'></span></a>`;
+    } else {
+      pagination += "<p>";
+    }
+    for(var i = minVisiblePage; i <= maxVisiblePage; i++) {
+      if (i === currentPage) {
+        pagination += `<button class='btn btn-default active'>${i}</button>`;
+      } else {
+        pagination += `<a class='btn btn-default' href='index.html?name=${search}&page=${i}'>${i}</a>`;
+      }
+    }
+    if (lastPage > maxVisiblePage) {
+      pagination += `<a class='paginateLink' href='index.html?name=${search}&page=${lastPage}'><span class='glyphicon glyphicon glyphicon-menu-right'></span></a>`;
+    }
+    pagination += "</p>";
+    $('.pagination').append(pagination);
+  }
+};
+
 
 parseUser = function(user, n) {
   var userInfo = `
