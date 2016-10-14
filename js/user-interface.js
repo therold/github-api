@@ -1,5 +1,4 @@
 displayUserResults = function(user, n) {
-  console.log(user);
   $('.loading').hide();
   $('.mainContent').show();
   $('.userImg').append(`<img src="${user.avatar_url}"></img>`);
@@ -46,7 +45,6 @@ displayUserError = function(error) {
 };
 
 displayRepos = function(repos) {
-  console.log(repos);
   $('.expander').removeClass('glyphicon-triangle-right');
   $('.expander').addClass('glyphicon-triangle-bottom');
   repos.forEach(function(repo) {
@@ -62,11 +60,26 @@ parseRepo = function(repo) {
   } else {
     description = "Unknown";
   }
+  if(repo.homepage) {
+    homepage = `<a href="${repo.homepage}">${repo.homepage}</a></p>`;
+  } else {
+    homepage = "Unknown";
+  }
+  if(repo.language) {
+    language = repo.language;
+  } else {
+    language = "Unknown";
+  }
 
+  var created_at = moment(repo.created_at).format("MM/DD/YYYY");
   var repoInfo = `
   <div class="repoDetailsData">
     <p>${repo.name}</p>
-    <p>Description: <em>${description}</p>
+    <p>Date created: ${created_at}</p>
+    <p>Description: <em>${description}</em></p>
+    <p>Github: <a href="${repo.html_url}">${repo.html_url}</a></p>
+    <p>Homepage: ${homepage}
+    <p>Language: ${language}</p>
     <hr>
   </div>`;
   return repoInfo;

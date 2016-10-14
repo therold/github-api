@@ -1,5 +1,4 @@
 displaySearchResults = function(result) {
-  console.log(result);
   $('.loading').hide();
 
   if(result.items.length === 0) {
@@ -82,7 +81,6 @@ displaySearchError = function(error) {
 
 displaySearchDetails = function(user, n) {
   $('.loadingUserDetails').hide();
-  // console.log(user);
   var userDetails = parseUserDetails(user);
   $(`.user${n}`).append(userDetails);
 };
