@@ -1,4 +1,4 @@
-.loading, .loadingUserDetails, .loadingRepoDetails {
+.loading, .loadingUserDetails, .loadingRepoDetails, .banner-sm {
   display: none;
 }
 .avatarImg {
@@ -8,4 +8,23 @@
 
 .userInfo p, .repos .header {
   cursor: pointer;
+}
+
+.banner {
+  width: 100%;
+  height: auto;
+}
+
+.banner-sm {
+  float: left;
+  margin-left:10px;
+  margin-right: 10px;
+  width: 96px;
+  height: auto;
+}
+
+.banner-sm, .form-group {
+
+  padding-top: 20px;
+
 }
