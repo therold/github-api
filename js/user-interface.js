@@ -17,7 +17,7 @@ displayUserResults = function(user, n) {
     $('.blog').text("Unknown");
   }
   if (user.email) {
-    $('.email').text(user.email);
+    $('.email').append(`<a href="mailto:${user.email}">${user.email}</a>`);
   } else {
     $('.email').text("Unknown");
   }
