@@ -15,15 +15,20 @@ $(document).ready(function() {
 displaySearchResults = function(result) {
   console.log(result);
   $('.loading').hide();
-  result.items.forEach(function(item) {
-    var userInfo = `
-      <div class="userInfo">
-        <img src=${item.avatar_url} class="pull-right avatarImg"></img>
-        <p>${item.login}</p>
-        <hr>
-      </div>`;
-    $('.results').append(userInfo);
-  });
+  if(result.items.length === 0) {
+    var resultInfo = "<h3>No results found.";
+    $('.results').append(resultInfo);
+  } else {
+    result.items.forEach(function(item) {
+      var userInfo = `
+        <div class="userInfo">
+          <img src=${item.avatar_url} class="pull-right avatarImg"></img>
+          <p>${item.login}</p>
+          <hr>
+        </div>`;
+      $('.results').append(userInfo);
+    });
+  }
 };
 
 displaySearchError = function(error) {
