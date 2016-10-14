@@ -25,5 +25,6 @@ displaySearchResults = function(result) {
 };
 
 displaySearchError = function(error) {
-  console.log(error);
+  var errorInfo = `<p>Error: ${error}</p>`;
+  $('.results').append(errorInfo);
 };
