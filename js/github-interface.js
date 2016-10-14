@@ -5,6 +5,7 @@ var github = new Github();
 $(document).ready(function() {
   var search = queryString.parse(location.search).name;
   if(search) {
+    $('.loading').show();
     $('#name').val(search);
     github.search(search, displaySearchResults, displaySearchError);
   }
@@ -13,6 +14,7 @@ $(document).ready(function() {
 
 displaySearchResults = function(result) {
   console.log(result);
+  $('.loading').hide();
   result.items.forEach(function(item) {
     var userInfo = `
       <div class="userInfo">
@@ -25,6 +27,7 @@ displaySearchResults = function(result) {
 };
 
 displaySearchError = function(error) {
+  $('.loading').hide();
   var errorInfo = `<p>Error: ${error}</p>`;
   $('.results').append(errorInfo);
 };
