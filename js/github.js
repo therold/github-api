@@ -5,12 +5,12 @@ function Github() {
 
 }
 
-Github.prototype.search = function(search) {
+Github.prototype.search = function(search, displayFunction, displayError) {
   $.get(`${baseURL}/search/users?q=${search}&access_token=${apiKey}`)
     .then(function(response) {
-      console.log(response);
+      displayFunction(response);
     }).fail(function(error) {
-      console.log(error.responseJSON.message);
+      displayError(error.responseJSON.message);
     });
 };
 
