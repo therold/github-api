@@ -11,7 +11,12 @@ displaySearchResults = function(result) {
       $('.userInfo').last().click(function() {
         if($(`.user${i} .userDetailsData`).length === 0){
           loadSearchDetails(item.login, i);
+          $('.glyphicon-triangle-bottom').addClass('glyphicon-triangle-right').removeClass('glyphicon-triangle-bottom');
+          $(`.user${i} .expander`).removeClass('glyphicon-triangle-right');
+          $(`.user${i} .expander`).addClass('glyphicon-triangle-bottom');
         } else {
+          $(`.user${i} .expander`).removeClass('glyphicon-triangle-bottom');
+          $(`.user${i} .expander`).addClass('glyphicon-triangle-right');
           $(`.user${i} .userDetailsData`).remove();
         }
       });
@@ -21,10 +26,10 @@ displaySearchResults = function(result) {
 
 parseUser = function(user, n) {
   var userInfo = `
-    <div class="userInfo">
+    <div class="userInfo user${n}">
       <img src=${user.avatar_url} class="pull-right avatarImg"></img>
-      <p>${user.login}</p>
-      <div class="userDetails user${n}">
+      <p><span class="expander glyphicon glyphicon-triangle-right"></span><strong>${user.login}</strong</p>
+      <div class="userDetails">
         <h3 class='loadingUserDetails text-center'>Loading...</h3>
       </div>
       <hr>
