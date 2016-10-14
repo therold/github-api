@@ -11,4 +11,12 @@ $(document).ready(function() {
       github.search(search, displaySearchResults, displaySearchError);
     }
   }
+  if(document.location.pathname === "/user.html") {
+    var user = queryString.parse(location.search).user;
+    if(user) {
+      $('.loading').show();
+      $('title').text(user);
+      // github.user(user, displayUserResults, displayUserError);
+    }
+  }
 });
