@@ -86,5 +86,5 @@ parseRepo = function(repo) {
 };
 
 displayReposError = function(error) {
-  console.log(error);
+  $('.error').append(`Error: ${error}`);
 };
