@@ -29,8 +29,13 @@ displayUserResults = function(user, n) {
   $('.github').append(`<a href=${user.html_url}>${user.html_url}</a>`);
   $('.repoCount').text(`${user.public_repos}`);
 
-  $('.repos').click(function() {
-    github.repos(user.login, displayRepos, displayReposError);
+  $('.repos .header').click(function() {
+    if($('.repos .repoDetailsData').length === 0) {
+      github.repos(user.login, displayRepos, displayReposError);
+    } else {
+      $('.repos .repoDetailsData').remove();
+    }
+
   });
 };
 
@@ -41,6 +46,27 @@ displayUserError = function(error) {
 
 displayRepos = function(repos) {
   console.log(repos);
+  repos.forEach(function(repo) {
+    var repoInfo = parseRepo(repo);
+    $('.repoDetails').append(repoInfo);
+  });
+};
+
+parseRepo = function(repo) {
+  var description;
+  if(repo.description) {
+    description = repo.description;
+  } else {
+    description = "Unknown";
+  }
+
+  var repoInfo = `
+  <div class="repoDetailsData">
+    <p>${repo.name}</p>
+    <p>Description: <em>${description}</p>
+    <hr>
+  </div>`;
+  return repoInfo;
 };
 
 displayReposError = function(error) {
