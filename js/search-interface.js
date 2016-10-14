@@ -1,5 +1,5 @@
 displaySearchResults = function(result) {
-  console.log(result);
+  // console.log(result);
   $('.loading').hide();
   if(result.items.length === 0) {
     var resultInfo = "<h3>No results found.</h3>";
@@ -9,7 +9,11 @@ displaySearchResults = function(result) {
       var userInfo = parseUser(item, i);
       $('.results').append(userInfo);
       $('.userInfo').last().click(function() {
-        loadSearchDetails(item.login, i);
+        if($(`.user${i} .userDetailsData`).length === 0){
+          loadSearchDetails(item.login, i);
+        } else {
+          $(`.user${i} .userDetailsData`).remove();
+        }
       });
     });
   }
@@ -30,7 +34,7 @@ parseUser = function(user, n) {
 
 loadSearchDetails = function(user, n) {
   $('.userDetailsData').remove();
-  $(`user${n}`).find('.loadingUserDetails').show();
+  $(`.user${n}`).find('.loadingUserDetails').show();
   github.user(user, n, displaySearchDetails, displaySearchDetailsError);
 };
 
@@ -42,12 +46,30 @@ displaySearchError = function(error) {
 
 displaySearchDetails = function(user, n) {
   $('.loadingUserDetails').hide();
-  console.log(user);
+  // console.log(user);
+  var userDetails = parseUserDetails(user);
+  $(`.user${n}`).append(userDetails);
+};
+
+parseUserDetails = function(user) {
   var userDetails = `
     <div class="userDetailsData">
-      <p>Followers: ${user.followers}</p>
+      <div class="row">
+        <div class="col-xs-4">
+          <p>Repositories: ${user.public_repos}</p>
+        </div>
+        <div class="col-xs-4">
+          <p>Followers: ${user.followers}</p>
+        </div>
+        <div class="col-xs-4">
+          <p>Following: ${user.following}</p>
+        </div>
+      </div>
+      <div class="row text-center">
+        <strong><a href="/user.html?user=${user.login}" class="text-center">View full user info.</a></strong>
+      </div>
     </div>`;
-  $(`.user${n}`).append(userDetails);
+  return userDetails;
 };
 
 displaySearchDetailsError = function(error, n) {
