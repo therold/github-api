@@ -11,8 +11,17 @@ $(document).ready(function() {
 });
 
 
-displaySearchResults = function(results) {
-  console.log(results);
+displaySearchResults = function(result) {
+  console.log(result);
+  result.items.forEach(function(item) {
+    var userInfo = `
+      <div class="userInfo">
+        <img src=${item.avatar_url} class="pull-right avatarImg"></img>
+        <p>${item.login}</p>
+        <hr>
+      </div>`;
+    $('.results').append(userInfo);
+  });
 };
 
 displaySearchError = function(error) {
