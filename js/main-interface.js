@@ -16,7 +16,7 @@ $(document).ready(function() {
     if(user) {
       $('.loading').show();
       $('title').text(user);
-      // github.user(user, displayUserResults, displayUserError);
+      github.user(user, 0, displayUserResults, displayUserError);
     }
   }
 });
