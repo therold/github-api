@@ -34,8 +34,9 @@ displayUserResults = function(user, n) {
       github.repos(user.login, displayRepos, displayReposError);
     } else {
       $('.repos .repoDetailsData').remove();
+      $('.expander').removeClass('glyphicon-triangle-bottom');
+      $('.expander').addClass('glyphicon-triangle-right');
     }
-
   });
 };
 
@@ -46,6 +47,8 @@ displayUserError = function(error) {
 
 displayRepos = function(repos) {
   console.log(repos);
+  $('.expander').removeClass('glyphicon-triangle-right');
+  $('.expander').addClass('glyphicon-triangle-bottom');
   repos.forEach(function(repo) {
     var repoInfo = parseRepo(repo);
     $('.repoDetails').append(repoInfo);
