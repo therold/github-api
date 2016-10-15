@@ -1,3 +1,4 @@
+
 # Github User Search
 
 #### _An application to search Github users, 10/13/2016_
@@ -17,7 +18,7 @@ _This application is designed to search users on Github. This application will a
   * npm install
   * bower install
 * Create a file called ".env" in the main project directory:
-  * touch github-api/.env
+  * touch .env
 * Open the .env file in your preferred text editor and add your Github API key. There should be a single line in the .env file using the following format:
   * exports.apiKey = "YOUR-API-KEY-HERE";
 * Build and run the project:
